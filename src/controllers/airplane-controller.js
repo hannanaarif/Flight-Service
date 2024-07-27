@@ -22,16 +22,25 @@ async function createAirplane(req,res){
         return res.status(error.statuscode)
         .json(ErrorResponse);
     }
-    // catch (error) {
-    //     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-    //         success:false,
-    //         message:'Something went wrong while creating airplane',
-    //         data:{},
-    //         error:error
-    //     })
+}
+
+async function getAirplanes(req,res){
+    try {
+        const airplane=await AirplaneService.getAirplane();
+        SuccessResponse.data=airplane;
+        return res
+        .status(StatusCodes.OK)
+        .json(SuccessResponse);
         
-    // }
+    } catch (error) {
+        ErrorResponse.error=error;
+        return res.status(error.statuscode)
+        .json(ErrorResponse);
+        
+    }
+   
 }
 module.exports={
-    createAirplane
+    createAirplane,
+    getAirplanes
 }
