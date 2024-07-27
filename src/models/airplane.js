@@ -33,6 +33,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Airplane',
   });
-  console.log('Attempting to create model');
   return Airplane;
 };
