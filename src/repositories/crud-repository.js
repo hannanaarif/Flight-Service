@@ -17,6 +17,9 @@ class crudRepository{
                 id:data
             }
            });
+           if(!response){
+            throw new AppError('Not able to find the resource',StatusCodes.NOT_FOUND);
+           }
            return response;     
     }
     async get(data){
