@@ -1,4 +1,3 @@
-const { classToInvokable } = require('sequelize/lib/utils');
 const {AirplaneRepository}=require('../repositories');
 const AppError = require('../utils/errors/app-error');
 const {StatusCodes}=require('http-status-codes');
@@ -65,36 +64,9 @@ async function destroyAirplane(id){
     }
 }
 
-
-async function updateAirplane(id, updateData) {
-    try {
-        console.log("At service of Update")
-        // Fetch the existing airplane
-        const airplane = await airplaneRepository.get(id);
-
-        if (!airplane) {
-            throw new AppError('The airplane you requested is not present', StatusCodes.NOT_FOUND);
-        }
-
-        // Update the airplane with new data
-        console.log("calling update after get");
-        const updatedAirplane = await airplaneRepository.update(id, updateData);
-
-        return updatedAirplane;
-        
-    } catch (error) {
-        if (error.statuscode === StatusCodes.NOT_FOUND) {
-            throw new AppError('The airplane you requested is not present', error.statuscode);
-        }
-        throw new AppError('Cannot update the airplane data', StatusCodes.INTERNAL_SERVER_ERROR);
-    }
-}
-
-
 module.exports={
     createAirplane,
     getAirplanes,
     getAirplane,
-    destroyAirplane,
-    updateAirplane
+    destroyAirplane
 }

@@ -80,36 +80,9 @@ async function destroyAirplane(req,res){
     }
    
 }
-
-async function updateAirplane(req, res) {
-    try {
-        console.log("update at try of controller");
-        const id = req.params.id;
-        const updateData = {
-            modelNumber: req.body.modelNumber,
-            capacity: req.body.capacity
-        };
-        console.log("id and updateData:-",id,updateData);
-
-        const updatedAirplane = await AirplaneService.updateAirplane(id, updateData);
-
-        SuccessResponse.data = updatedAirplane;
-        return res
-            .status(StatusCodes.OK)
-            .json(SuccessResponse);
-        
-    } catch (error) {
-        ErrorResponse.error = error;
-        return res
-            .status(error.statuscode || StatusCodes.INTERNAL_SERVER_ERROR)
-            .json(ErrorResponse);
-    }
-}
-
 module.exports={
     createAirplane,
     getAirplanes,
     getAirplane,
-    destroyAirplane,
-    updateAirplane
+    destroyAirplane
 }
