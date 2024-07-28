@@ -19,6 +19,10 @@ router.get('/:id',AirplaneController.getAirplane);
 // /api/v1/airplanes/:id  DELETE
 router.delete('/:id',AirplaneController.destroyAirplane);
 
+console.log("Update at Route");
+// /api/v1/airplanes/:id PATCH
+router.patch('/:id', AirplaneController.updateAirplane);
+
 
 
 
