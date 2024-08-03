@@ -17,10 +17,7 @@ async function createCity(req,res){
         .json(SuccessResponse)
            
     }catch (error) {
-        console.log("Getting into Error CityController Error :-",error);
         ErrorResponse.error=error;
-        console.log("Error Response",ErrorResponse);
-        console.log("Error Statuscode",error.statuscode);
         return res.status(error.statuscode)
         .json(ErrorResponse);
     }
