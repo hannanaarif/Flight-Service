@@ -34,13 +34,24 @@ class crudRepository{
            return response;  
     }
 
-    async update(data,id){
+    async update(id,data){
            const response=await this.model.update(data,{
-            where:{ id:id}
-           });
-           return response;  
+            where: {
+                id: id
+              }
+            });
+    
+            if (response[0] === 0) {
+              const ErrorResponse = {
+                message: 'Failed to update the data',
+                error: new AppError(['Failed to update the data'], StatusCodes.INTERNAL_SERVER_ERROR)
+              };
+              throw ErrorResponse;
+            }
+            return response[0];
+          }
+    
     }
-}
 
 
 module.exports=crudRepository;
