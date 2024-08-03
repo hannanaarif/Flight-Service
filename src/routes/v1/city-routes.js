@@ -10,6 +10,8 @@ router.post('/',
     CityMiddlewares.validateCreateRequest,
     CityController.createCity
 );
+console.log("delete Router from city-routes");
+router.delete('/:id',CityController.destroyCity);
 
 
 module.exports=router;

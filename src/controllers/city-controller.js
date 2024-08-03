@@ -7,7 +7,6 @@ const {SuccessResponse,ErrorResponse} = require('../utils/common');
 async function createCity(req,res){
     console.log("City-Controller",req.body.name);
     try {
-        console.log("Getting into CityController");
         const city=await CityService.createCity({
           name:req.body.name
         })
@@ -21,15 +20,28 @@ async function createCity(req,res){
         return res.status(error.statuscode)
         .json(ErrorResponse);
     }
-       /*catch (error) {
-        console.log("Getting into Error CityController Error",error);
+}
+
+async function destroyCity(req,res){
+    try {
+        console.log("Destroy City of Controller try");
+        const city=await CityService.destroyCity(req.params.id);
+        SuccessResponse.data=city;
+        return res
+        .status(StatusCodes.OK)
+        .json(SuccessResponse);
+        
+    } catch (error) {
         ErrorResponse.error=error;
         return res.status(error.statuscode)
         .json(ErrorResponse);
-    }*/
+        
+    }
+   
 }
 
 module.exports={
     createCity,
+    destroyCity
 }
 
