@@ -11,7 +11,6 @@ async function createAirplane(req,res){
             modelNumber:req.body.modelNumber,
             capacity:req.body.capacity
         })
-        console.log('Implementented New Error and Success');
         SuccessResponse.data=airplane;
         return res
         .status(StatusCodes.CREATED)
@@ -80,9 +79,27 @@ async function destroyAirplane(req,res){
     }
    
 }
+async function updateAirplane(req,res){
+
+    try{
+     const airplanes = await AirplaneService.updateAirplane({Capacity : req.body.Capacity},req.params.id);
+     SuccessResponse.data = airplanes;
+     return res.
+               status(StatusCodes.CREATED)
+              .json( SuccessResponse );
+    }
+
+    catch(error){
+      ErrorResponse.error = error 
+      return res
+              .status(error.statuscode) //Error has Self Property statusCode we simply not write again we just                          //Pass it with statusCode
+              .json(ErrorResponse);
+    }
+}
 module.exports={
     createAirplane,
     getAirplanes,
     getAirplane,
-    destroyAirplane
+    destroyAirplane,
+    updateAirplane
 }
