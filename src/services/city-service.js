@@ -10,16 +10,16 @@ async function createCity(data){
         const city=await cityRepository.create(data);
         return city;   
     } catch (error) {
-        if(error.name==='SequelizeValidationError'){
+    
+        if(error.name==='SequelizeValidationError' ||error.name==='SequelizeUniqueConstraintError'){
             let explaination=[];
             error.errors.forEach((err) => {
                 explaination.push(err.message);  
             });
             throw new AppError(explaination,StatusCodes.BAD_REQUEST);
         }
-        throw error('Cannot Create a new city object',StatusCodes.INTERNAL_SERVER_ERROR);  
+        throw new AppError('Cannot Create a new city object',StatusCodes.INTERNAL_SERVER_ERROR);  
     }
-
 }
 
 
