@@ -30,6 +30,7 @@ async function createAirport(data){
 
 async function getAirports(){
     try {
+        console.log("get Airports from service");
         const airports=await airportRepository.getAll();
         return airports;
         

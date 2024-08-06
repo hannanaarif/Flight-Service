@@ -36,7 +36,9 @@ async function createAirport(req,res){
 
 async function getAirports(req,res){
     try {
-        const airplane=await AirportService.getAirplanes();
+        console.log("get Airports from controller");
+        const airplane=await AirportService.getAirports();
+        console.log("response Airports from controller",airplane);
         SuccessResponse.data=airplane;
         return res
         .status(StatusCodes.OK)
@@ -89,7 +91,6 @@ async function destroyAirport(req,res){
    
 }
 async function updateAirport(req,res){
-
     try{
      const airport = await AirportService.updateAirport({Capacity : req.body.Capacity},req.params.id);
      SuccessResponse.data = airport;
