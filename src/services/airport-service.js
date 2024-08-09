@@ -5,15 +5,11 @@ const {StatusCodes}=require('http-status-codes');
 const airportRepository=new AirportRepository();
 
 async function createAirport(data){
-    console.log("Reached Aiplane service");
-    console.log('!!!Data',data);
-
     try {
         const airport=await airportRepository.create(data);
         return airport;
         
     } catch (error) {
-        console.log(error);
         if(error.name==='SequelizeValidationError'){
             let explaination=[];
             error.errors.forEach((err) => {
@@ -30,7 +26,6 @@ async function createAirport(data){
 
 async function getAirports(){
     try {
-        console.log("get Airports from service");
         const airports=await airportRepository.getAll();
         return airports;
         
