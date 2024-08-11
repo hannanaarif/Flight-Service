@@ -29,9 +29,13 @@ async function getAirports(){
         const airports=await airportRepository.getAll();
         return airports;
         
-    } catch (error) {
-        throw new AppError('cannot fetch data of all the airports',StatusCodes.INTERNAL_SERVER_ERROR);
+    } catch (error)  {
+        if(error.StatusCode==StatusCodes.NOT_FOUND){
+        throw new AppError('The flight you requested is not present',error.StatusCode);
+       }
+       throw new AppError('cannot fetch data of all the airports',StatusCodes.INTERNAL_SERVER_ERROR);
     }
+
 }
 
 async function getAirport(id){
