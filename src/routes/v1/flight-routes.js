@@ -17,6 +17,14 @@ router.get('/',FlightController.getAllFlights);
 router.get('/:id',FlightController.getFlight);
 
 
+<<<<<<< HEAD
+=======
+// /api/v1/flights/:id/seats PATCH
+router.patch('/:id/seats',
+    FlightMiddlewares.validateUpdateSeatsRequest,
+    FlightController.updateSeats,
+)
+>>>>>>> 669e33a (Add flight seats update api)
 
 module.exports=router;
 

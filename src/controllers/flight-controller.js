@@ -57,6 +57,38 @@ async function getAllFlights(req,res){
     }
 
 }
+async function getFlight(req,res){
+    try {
+        const flight=await Flightservice.getFlight(req.params.id);
+        SuccessResponse.data=flight;
+        return res
+        .status(StatusCodes.OK)
+        .json(SuccessResponse);
+        
+    } catch (error) {
+        ErrorResponse.error=error;
+        return res.status(error.statuscode)
+        .json(ErrorResponse);
+    }
+}
+async function updateSeats(req,res){
+    try {
+        const response=await Flightservice.updateSeats({
+            flightId:req.params.id,
+            seats:req.body.seats,
+            dec:req.body.dec
+        })
+        SuccessResponse.data=response;
+        return res
+        .status(StatusCodes.OK)
+        .json(SuccessResponse);
+        
+    } catch (error) {
+        ErrorResponse.error=error;
+        return res.status(error.statuscode)
+        .json(ErrorResponse); 
+    }
+}
 
 async function getFlight(req,res){
     try {
@@ -78,5 +110,10 @@ async function getFlight(req,res){
 module.exports={
     createFlight,
     getAllFlights,
+<<<<<<< HEAD
     getFlight
+=======
+    getFlight,
+    updateSeats
+>>>>>>> 669e33a (Add flight seats update api)
 }
