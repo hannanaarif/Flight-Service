@@ -7,7 +7,6 @@ const app=express();
 const PORT=serverconfig.PORT;
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-Logger.info("Home",{});
 
 app.use('/api',apiRoutes),
 

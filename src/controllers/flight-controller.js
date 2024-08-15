@@ -73,6 +73,8 @@ async function getFlight(req,res){
 }
 async function updateSeats(req,res){
     try {
+        console.log("Controller flightId,seats,dec:",req.params.id,req.body.seats,
+             req.body.dec);
         const response=await Flightservice.updateSeats({
             flightId:req.params.id,
             seats:req.body.seats,
@@ -90,30 +92,26 @@ async function updateSeats(req,res){
     }
 }
 
-async function getFlight(req,res){
-    try {
-        const flight=await Flightservice.getFlight();
-        SuccessResponse.data=flight;
-        return res
-        .status(StatusCodes.OK)
-        .json(SuccessResponse);
+// async function getFlight(req,res){
+//     try {
+//         const flight=await Flightservice.getFlight();
+//         SuccessResponse.data=flight;
+//         return res
+//         .status(StatusCodes.OK)
+//         .json(SuccessResponse);
         
-    } catch (error) {
-        ErrorResponse.error=error;
-        return res.status(error.statuscode)
-        .json(ErrorResponse);
+//     } catch (error) {
+//         ErrorResponse.error=error;
+//         return res.status(error.statuscode)
+//         .json(ErrorResponse);
         
-    }
+//     }
    
-}
+// }
 
 module.exports={
     createFlight,
     getAllFlights,
-<<<<<<< HEAD
-    getFlight
-=======
     getFlight,
     updateSeats
->>>>>>> 669e33a (Add flight seats update api)
 }
