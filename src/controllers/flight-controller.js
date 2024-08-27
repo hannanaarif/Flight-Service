@@ -66,6 +66,8 @@ async function getFlight(req,res){
         .json(SuccessResponse);
         
     } catch (error) {
+        console.log(error);
+        console.log("Error from controller",error.statuscode);
         ErrorResponse.error=error;
         return res.status(error.statuscode)
         .json(ErrorResponse);
